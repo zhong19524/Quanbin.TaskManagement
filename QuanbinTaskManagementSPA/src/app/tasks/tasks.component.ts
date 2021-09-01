@@ -58,6 +58,7 @@ export class TasksComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.taskinfo);
     this.taskService.createTask(this.taskinfo)
       .subscribe((result) => {
         if (result) {

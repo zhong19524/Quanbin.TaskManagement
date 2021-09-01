@@ -1,8 +1,9 @@
+
 export interface TasksCreate {
     userId: number;
     title: string;
     description: string;
-    dueDate: Date;
+    dueDate: Date,
     priority: string;
     remarks: string;
 }

@@ -39,6 +39,8 @@ export class TaskService {
 
   // Task CURD Operation
   createTask(taskCreate:TasksCreate):Observable<boolean>{
+    console.log('inside CreateTask');
+    console.log(taskCreate);
     return this.http.post(`${environment.apiUrl}`+'Tasks/Create',taskCreate).pipe(
       map((response:any) =>{
         if (response){

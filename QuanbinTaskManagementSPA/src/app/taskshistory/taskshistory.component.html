@@ -48,7 +48,7 @@
         <div *ngIf="invalid" class="alert alert-danger">
             Something wrong, try again
         </div>
-      <form #f="ngForm" (ngSubmit)="onSubmit()" novalidate>
+      <form #f="ngForm" (ngSubmit)="onSubmit()" >
         <div class="form-group">
             <label for="userid">UserId</label>
             <input type="number" class="form-control" id="userid" name="userid" [(ngModel)]="taskinfo.userId">
@@ -63,7 +63,7 @@
         </div>
         <div class="form-group">
             <label for="dueDate">DueDate</label>
-            <input type="Date" class="form-control" id="dueDate" name="dueDate" [(ngModel)]="taskinfo.dueDate">
+            <input type="date" class="form-control" id="dueDate" name="dueDate" [(ngModel)]="taskinfo.dueDate">
         </div>
         <div class="form-group">
             <label for="completed">Completed</label>
@@ -93,7 +93,7 @@
         <div *ngIf="invalid" class="alert alert-danger">
             Something wrong, try again
         </div>
-        <form #updateform="ngForm" (ngSubmit)="onUpdate()" novalidate>
+        <form #updateform="ngForm" (ngSubmit)="onUpdate()" >
         <div class="form-group">
             <label for="userid">TaskId</label>
             <input type="number" class="form-control" id="userid" name="userid" [(ngModel)]="taskupdateinfo.taskId">
