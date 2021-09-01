@@ -1,0 +1,55 @@
+<div class="rounded">
+
+    <div class="container-fluid bg-light">
+        <h3>Tasks</h3>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>TaskID</th>
+              <th>Title</th>
+              <th>Priority</th>
+              <th>Remarks</th>
+              <th>DueDate</th>
+              <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let task of tasks">
+                <td><span>{{task.id}}</span></td>
+                <td><span>{{task.title}}</span></td>
+                <td><span>{{task.priority}}</span></td>
+                <td><span>{{task.remarks}}</span></td>
+                <td><span>{{task.dueDate}}</span></td>
+                <td><span>{{task.description}}  </span></td>
+            </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    <div class="container-fluid bg-light">
+        <h3>TaskHistories</h3>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>TaskID</th>
+              <th>Title</th>
+              <th>Remarks</th>
+              <th>DueDate</th>
+              <th>Completed Date</th>
+              <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let taskhistory of tasksHistories">
+                <td><span>{{taskhistory.taskId}}</span></td>
+                <td><span>{{taskhistory.title}}</span></td>
+                <td><span>{{taskhistory.remarks}}</span></td>
+                <td><span>{{taskhistory.dueDate}}</span></td>
+                <td><span>{{taskhistory.completed}}</span></td>
+                <td><span>{{taskhistory.description}} </span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

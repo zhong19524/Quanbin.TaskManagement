@@ -1,0 +1,155 @@
+<div class="rounded">
+    <div class="container-fluid bg-light">
+        <h3>TaskHistories</h3>
+        <button class="btn btn-md btn-primary" (click)="CreateTasksHistory()">
+            New TasksHistory
+        </button>
+        <button class="btn btn-sm btn-info ml-4" (click)="UpdateTasksHistory()" >
+            <i class="fa fa-edit"></i>Update
+        </button>
+        <button class="btn btn-sm btn-danger ml-4" (click)="DeleteTasksHistory()">
+            <i class="fa fa-remove"></i>Delete
+        </button>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>UserID</th>
+              <th>Title</th>
+              <th>Remarks</th>
+              <th>Duedate</th>
+              <th>Completed Date</th>
+              <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let taskhistory of tasksHistories">
+                <td><span>{{taskhistory.userId}}</span></td>
+                <td><span>{{taskhistory.title}}</span></td>
+                <td><span>{{taskhistory.remarks}}</span></td>
+                <td><span>{{taskhistory.dueDate}}</span></td>
+                <td><span>{{taskhistory.completed}}</span></td>
+                <td><span>{{taskhistory.description}} </span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<ng-template #Taskform let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">New TaskHistory</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div *ngIf="invalid" class="alert alert-danger">
+            Something wrong, try again
+        </div>
+      <form #f="ngForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-group">
+            <label for="userid">UserId</label>
+            <input type="number" class="form-control" id="userid" name="userid" [(ngModel)]="taskinfo.userId">
+        </div>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="title" class="form-control" id="title" name="title" [(ngModel)]="taskinfo.title">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="description" class="form-control" id="description" name="description" [(ngModel)]="taskinfo.description">
+        </div>
+        <div class="form-group">
+            <label for="dueDate">DueDate</label>
+            <input type="Date" class="form-control" id="dueDate" name="dueDate" [(ngModel)]="taskinfo.dueDate">
+        </div>
+        <div class="form-group">
+            <label for="completed">Completed</label>
+            <input type="date" class="form-control" id="completed" name="completed" [(ngModel)]="taskinfo.completed">
+        </div>
+        <div class="form-group">
+            <label for="remarks">Remarks</label>
+            <input type="remarks" class="form-control" id="remarks" name="remarks" [(ngModel)]="taskinfo.remarks">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+      <button data-dismiss="modal" class="btn btn-info"(click) = "onSubmit()">Submit</button>
+    </div>
+  </ng-template>
+
+<!-- Modal -->
+<ng-template #Updateform let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Update TaskHistory</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div *ngIf="invalid" class="alert alert-danger">
+            Something wrong, try again
+        </div>
+        <form #updateform="ngForm" (ngSubmit)="onUpdate()" novalidate>
+        <div class="form-group">
+            <label for="userid">TaskId</label>
+            <input type="number" class="form-control" id="userid" name="userid" [(ngModel)]="taskupdateinfo.taskId">
+        </div>
+        <div class="form-group">
+            <label for="userid">UserId</label>
+            <input type="number" class="form-control" id="userid" name="userid" [(ngModel)]="taskupdateinfo.userId">
+        </div>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="title" class="form-control" id="title" name="title" [(ngModel)]="taskupdateinfo.title">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="description" class="form-control" id="description" name="description" [(ngModel)]="taskupdateinfo.description">
+        </div>
+        <div class="form-group">
+            <label for="dueDate">DueDate</label>
+            <input type="date" class="form-control" id="dueDate" name="dueDate" [(ngModel)]="taskupdateinfo.dueDate">
+        </div>
+        <div class="form-group">
+            <label for="completed">Completed</label>
+            <input type="date" class="form-control" id="completed" name="completed" [(ngModel)]="taskupdateinfo.completed">
+        </div>
+        <div class="form-group">
+            <label for="remarks">Remarks</label>
+            <input type="remarks" class="form-control" id="remarks" name="remarks" [(ngModel)]="taskupdateinfo.remarks">
+        </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+        <button data-dismiss="modal" class="btn btn-info"(click) = "onUpdate()">Update</button>
+    </div>
+    </ng-template>
+    
+    <!-- Modal -->
+    <ng-template #Deleteform let-modal>
+    <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div *ngIf="invalid" class="alert alert-danger">
+            Something wrong, try again
+        </div>
+        <form #Deleteform="ngForm" (ngSubmit)="onDelete()" novalidate>
+            <h4>Which TaskHistory do you want to delete? Please Enter ID</h4>
+            <div class="form-group">
+                    <label for="id">TaskHistory Id</label>
+                    <input type="number" class="form-control" id="id" name="id" [(ngModel)]="deleteid">
+            </div>
+        <div class="border text-center"> 
+          <button data-dismiss="modal" class="btn btn-danger" (click) = "onDelete()">Yes, Delete!</button> 
+        </div>
+        </form>
+    </div>
+    </ng-template>

@@ -1,0 +1,133 @@
+
+<div class="rounded">
+
+    <div class="container-fluid bg-light">
+        <h3>Users</h3>
+        <button class="btn btn-md btn-primary" (click)="CreateUser()">
+            New User
+        </button>
+        <button class="btn btn-sm btn-info ml-4" (click)="UpdateUser()" >
+            <i class="fa fa-edit"></i>Update
+        </button>
+        <button class="btn btn-sm btn-danger ml-4" (click)="DeleteUser()">
+            <i class="fa fa-remove"></i>Delete
+        </button>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Mobileno</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr div *ngFor="let user of users">
+                    <td>{{user.id}}</td>
+                    <td><span><app-user-card [user]="user"></app-user-card></span></td>
+                    <td><span>{{user.email}}</span></td>
+                    <td><span>{{user.mobileno}}</span></td>
+                </tr>
+                </tbody>
+        </table>
+        
+    </div>
+</div>
+
+<!-- Modal -->
+<ng-template #Userform let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">New User</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div *ngIf="invalid" class="alert alert-danger">
+            Something wrong, try again
+        </div>
+      <form #f="ngForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="userinfo.email" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="userinfo.password">
+        </div>
+        <div class="form-group">
+            <label for="fullname">FullName</label>
+            <input type="fullname" class="form-control" id="fullname" name="fullname" [(ngModel)]="userinfo.fullname">
+        </div>
+        <div class="form-group">
+            <label for="mobileno">Mobileno</label>
+            <input type="mobileno" class="form-control" id="mobileno" name="mobileno" [(ngModel)]="userinfo.mobileno">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+      <button data-dismiss="modal" class="btn btn-info"(click) = "onSubmit()">Submit</button>
+    </div>
+  </ng-template>
+
+<!-- Modal -->
+<ng-template #Updateform let-modal>
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update User</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div *ngIf="invalid" class="alert alert-danger">
+        Something wrong, try again
+    </div>
+    <form #updateform="ngForm" (ngSubmit)="onUpdate()" novalidate>
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="userinfo.email" aria-describedby="emailHelp">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="userinfo.password">
+    </div>
+    <div class="form-group">
+        <label for="fullname">FullName</label>
+        <input type="fullname" class="form-control" id="fullname" name="fullname" [(ngModel)]="userinfo.fullname">
+    </div>
+    <div class="form-group">
+        <label for="mobileno">Mobileno</label>
+        <input type="mobileno" class="form-control" id="mobileno" name="mobileno" [(ngModel)]="userinfo.mobileno">
+    </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+    <button data-dismiss="modal" class="btn btn-info"(click) = "onUpdate()">Update</button>
+</div>
+</ng-template>
+
+<!-- Modal -->
+<ng-template #Deleteform let-modal>
+<div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div *ngIf="invalid" class="alert alert-danger">
+        Something wrong, try again
+    </div>
+    <form #Deleteform="ngForm" (ngSubmit)="onDelete()" novalidate>
+        <h4>Which User do you want to delete? Please Enter User ID</h4>
+        <div class="form-group">
+                <label for="id">User Id</label>
+                <input type="number" class="form-control" id="id" name="id" [(ngModel)]="deleteid">
+        </div>
+    <div class="border text-center"> 
+      <button data-dismiss="modal" class="btn btn-danger" (click) = "onDelete()">Yes, Delete!</button> 
+    </div>
+    </form>
+</div>
+</ng-template>
